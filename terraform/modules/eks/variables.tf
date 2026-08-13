@@ -32,22 +32,22 @@ variable "node_role_arn" {
 variable "node_instance_types" {
   description = "Instance types for the managed node group."
   type        = list(string)
-  default     = ["t3.large"]
+  default     = ["t3.medium"]
 }
 
 variable "node_min_size" {
   type    = number
-  default = 2
+  default = 4
 }
 
 variable "node_max_size" {
   type    = number
-  default = 5
+  default = 4
 }
 
 variable "node_desired_size" {
   type    = number
-  default = 3
+  default = 4
 }
 
 variable "tags" {

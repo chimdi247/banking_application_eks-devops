@@ -28,7 +28,7 @@
 #   Variables:
 #     GCP_PROJECT_ID   - e.g. project-d31a3358-346c-40e8-bda
 #     GCP_REGION       - e.g. us-central1
-#     AR_REPO          - e.g. cloudkitchen-registry
+#     AR_REPO          - e.g. banking-platform
 # =============================================================================
 name: CI (GCP / Artifact Registry)
 

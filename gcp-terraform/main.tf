@@ -151,7 +151,7 @@ module "artifact_registry" {
   project_id    = var.project_id
   name_prefix   = local.name_prefix
   region        = var.region
-  repository_id = "cloudkitchen-registry"
+  repository_id = "banking-platform"
   images        = local.service_repos # reused as logical image names
   labels        = local.common_labels
 }

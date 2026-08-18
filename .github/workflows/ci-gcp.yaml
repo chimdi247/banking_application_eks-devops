@@ -136,18 +136,20 @@ jobs:
         id: vars
         run: echo "sha=$(echo "${GITHUB_SHA}" | cut -c1-7)" >> "$GITHUB_OUTPUT"
 
-      # ---- 2b. Resolve build context/Dockerfile dir per service --------------
-      #          Every service lives under services/<name>, except `frontend`
-      #          which is its own top-level directory at the repo root
-      #          (i.e. ./frontend, not ./services/frontend).
-      - name: Compute build context
-        id: ctx
+      # Resolve build context/Dockerfile/args (frontend differs from backends).
+      - name: Resolve build inputs
+        id: img
         run: |
           if [ "${{ matrix.service }}" = "frontend" ]; then
-            echo "dir=frontend" >> "$GITHUB_OUTPUT"
+            echo "context=./frontend" >> "$GITHUB_OUTPUT"
+            echo "dockerfile=./frontend/Dockerfile" >> "$GITHUB_OUTPUT"
+            echo "buildargs=" >> "$GITHUB_OUTPUT"
           else
-            echo "dir=services/${{ matrix.service }}" >> "$GITHUB_OUTPUT"
+            echo "context=." >> "$GITHUB_OUTPUT"
+            echo "dockerfile=build/service.Dockerfile" >> "$GITHUB_OUTPUT"
+            echo "buildargs=SERVICE=${{ matrix.service }}" >> "$GITHUB_OUTPUT"
           fi
+
 
       # ---- 3. Authenticate to GCP using a service-account JSON key -----------
       #         The key is stored as the GitHub Secret GCP_SA_KEY. Future
@@ -174,13 +176,14 @@ jobs:
       - name: Build image (local, for scanning)
         uses: docker/build-push-action@v6
         with:
-          context: ${{ steps.ctx.outputs.dir }}
-          file: ${{ steps.ctx.outputs.dir }}/Dockerfile
+          context: ${{ steps.img.outputs.context }}
+          file: ${{ steps.img.outputs.dockerfile }}
+          build-args: ${{ steps.img.outputs.buildargs }}
           push: false
-          load: true # make the image available to the local docker daemon
+          load: true
           tags: |
-            ${{ env.AR_PREFIX }}/${{ matrix.service }}:${{ steps.vars.outputs.sha }}
-            ${{ env.AR_PREFIX }}/${{ matrix.service }}:latest
+            ${{ env.IMAGE_PREFIX }}:${{ matrix.service }}-${{ steps.vars.outputs.sha }}
+            ${{ env.IMAGE_PREFIX }}:${{ matrix.service }}-latest
           cache-from: type=gha,scope=${{ matrix.service }}
           cache-to: type=gha,scope=${{ matrix.service }},mode=max
 
@@ -200,11 +203,12 @@ jobs:
       # ---- 9. Push to Artifact Registry — only after a clean scan, only on main
       #         PRs build + scan (gate) but do NOT push images.
       - name: Push image to Artifact Registry
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
-          context: ${{ steps.ctx.outputs.dir }}
-          file: ${{ steps.ctx.outputs.dir }}/Dockerfile
+          context: ${{ steps.img.outputs.context }}
+          file: ${{ steps.img.outputs.dockerfile }}
+          build-args: ${{ steps.img.outputs.buildargs }}
           push: true
           tags: |
             ${{ env.AR_PREFIX }}/${{ matrix.service }}:${{ steps.vars.outputs.sha }}

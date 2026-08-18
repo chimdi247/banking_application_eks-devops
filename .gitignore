@@ -5,6 +5,11 @@ dist/
 *.out
 app
 
+git-filter-repo
+
+
+gcp-terraform/gcp-sa.json
+
 # Go
 vendor/
 go.work.sum

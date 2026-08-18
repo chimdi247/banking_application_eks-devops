@@ -5,10 +5,8 @@
 # =============================================================================
 
 namespace: banking
-
 # Container registry that holds the service images (GCP Artifact Registry for GKE).
 imageRegistry: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform
-
 imagePullPolicy: IfNotPresent
 env:
   environment: development
@@ -53,7 +51,7 @@ secrets:
 authService:
   deploymentname: auth-service-deployment
   servicename: auth-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/auth-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:auth-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:auth-service-97788750fecb
   replicas: 1
   port: 8080
@@ -64,7 +62,7 @@ authService:
 authzService:
   deploymentname: authz-service-deployment
   servicename: authz-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/authz-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:authz-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:authz-service-97788750fecb
   replicas: 1
   port: 8080
@@ -75,7 +73,7 @@ authzService:
 customerService:
   deploymentname: customer-service-deployment
   servicename: customer-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/customer-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:customer-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:customer-service-97788750fecb
   replicas: 1
   port: 8080
@@ -85,7 +83,7 @@ customerService:
 profileService:
   deploymentname: profile-service-deployment
   servicename: profile-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/profile-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:profile-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:profile-service-97788750fecb
   replicas: 1
   port: 8080
@@ -95,7 +93,7 @@ profileService:
 kycService:
   deploymentname: kyc-service-deployment
   servicename: kyc-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/kyc-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:kyc-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:kyc-service-97788750fecb
   replicas: 1
   port: 8080
@@ -105,7 +103,7 @@ kycService:
 documentService:
   deploymentname: document-service-deployment
   servicename: document-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/document-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:document-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:document-service-97788750fecb
   replicas: 1
   port: 8080
@@ -115,7 +113,7 @@ documentService:
 ledgerService:
   deploymentname: ledger-service-deployment
   servicename: ledger-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/ledger-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:ledger-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:ledger-service-97788750fecb
   replicas: 1
   port: 8080
@@ -126,7 +124,7 @@ ledgerService:
 accountService:
   deploymentname: account-service-deployment
   servicename: account-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/account-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:account-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:account-service-97788750fecb
   replicas: 1
   port: 8080
@@ -137,7 +135,7 @@ accountService:
 transactionService:
   deploymentname: transaction-service-deployment
   servicename: transaction-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/transaction-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:transaction-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:transaction-service-97788750fecb
   replicas: 1
   port: 8080
@@ -147,7 +145,7 @@ transactionService:
 beneficiaryService:
   deploymentname: beneficiary-service-deployment
   servicename: beneficiary-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/beneficiary-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:beneficiary-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:beneficiary-service-97788750fecb
   replicas: 1
   port: 8080
@@ -157,7 +155,7 @@ beneficiaryService:
 paymentService:
   deploymentname: payment-service-deployment
   servicename: payment-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/payment-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:payment-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:payment-service-97788750fecb
   replicas: 1
   port: 8080
@@ -167,7 +165,7 @@ paymentService:
 walletService:
   deploymentname: wallet-service-deployment
   servicename: wallet-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/wallet-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:wallet-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:wallet-service-97788750fecb
   replicas: 1
   port: 8080
@@ -177,7 +175,7 @@ walletService:
 loanService:
   deploymentname: loan-service-deployment
   servicename: loan-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/loan-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:loan-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:loan-service-97788750fecb
   replicas: 1
   port: 8080
@@ -187,7 +185,7 @@ loanService:
 emiService:
   deploymentname: emi-service-deployment
   servicename: emi-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/emi-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:emi-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:emi-service-97788750fecb
   replicas: 1
   port: 8080
@@ -197,7 +195,7 @@ emiService:
 fixedDepositService:
   deploymentname: fixed-deposit-service-deployment
   servicename: fixed-deposit-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/fixed-deposit-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:fixed-deposit-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:fixed-deposit-service-97788750fecb
   replicas: 1
   port: 8080
@@ -207,7 +205,7 @@ fixedDepositService:
 recurringDepositService:
   deploymentname: recurring-deposit-service-deployment
   servicename: recurring-deposit-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/recurring-deposit-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:recurring-deposit-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:recurring-deposit-service-97788750fecb
   replicas: 1
   port: 8080
@@ -217,7 +215,7 @@ recurringDepositService:
 cardService:
   deploymentname: card-service-deployment
   servicename: card-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/card-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:card-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:card-service-97788750fecb
   replicas: 1
   port: 8080
@@ -227,7 +225,7 @@ cardService:
 investmentService:
   deploymentname: investment-service-deployment
   servicename: investment-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/investment-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:investment-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:investment-service-97788750fecb
   replicas: 1
   port: 8080
@@ -237,7 +235,7 @@ investmentService:
 currencyExchangeService:
   deploymentname: currency-exchange-service-deployment
   servicename: currency-exchange-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/currency-exchange-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:currency-exchange-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:currency-exchange-service-97788750fecb
   replicas: 1
   port: 8080
@@ -247,7 +245,7 @@ currencyExchangeService:
 auditService:
   deploymentname: audit-service-deployment
   servicename: audit-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/audit-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:audit-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:audit-service-97788750fecb
   replicas: 1
   port: 8080
@@ -257,7 +255,7 @@ auditService:
 fraudService:
   deploymentname: fraud-service-deployment
   servicename: fraud-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/fraud-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:fraud-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:fraud-service-97788750fecb
   replicas: 1
   port: 8080
@@ -267,7 +265,7 @@ fraudService:
 notificationService:
   deploymentname: notification-service-deployment
   servicename: notification-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/notification-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:notification-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:notification-service-97788750fecb
   replicas: 1
   port: 8080
@@ -277,7 +275,7 @@ notificationService:
 statementService:
   deploymentname: statement-service-deployment
   servicename: statement-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/statement-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:statement-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:statement-service-97788750fecb
   replicas: 1
   port: 8080
@@ -287,7 +285,7 @@ statementService:
 reportsService:
   deploymentname: reports-service-deployment
   servicename: reports-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/reports-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:reports-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:reports-service-97788750fecb
   replicas: 1
   port: 8080
@@ -297,7 +295,7 @@ reportsService:
 analyticsService:
   deploymentname: analytics-service-deployment
   servicename: analytics-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/analytics-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:analytics-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:analytics-service-97788750fecb
   replicas: 1
   port: 8080
@@ -307,7 +305,7 @@ analyticsService:
 searchService:
   deploymentname: search-service-deployment
   servicename: search-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/search-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:search-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:search-service-97788750fecb
   replicas: 1
   port: 8080
@@ -317,7 +315,7 @@ searchService:
 emailService:
   deploymentname: email-service-deployment
   servicename: email-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/email-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:email-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:email-service-97788750fecb
   replicas: 1
   port: 8080
@@ -328,7 +326,7 @@ smsService:
   deploymentname: sms-service-deployment
   servicename: sms-service
   image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/sms-service:7ebfb5a
-  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:sms-service-97788750fecb
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:sms-service-6febcc33e118
   replicas: 1
   port: 8080
   hpa: sms-service-hpa
@@ -337,7 +335,7 @@ smsService:
 supportService:
   deploymentname: support-service-deployment
   servicename: support-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/support-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:support-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:support-service-97788750fecb
   replicas: 1
   port: 8080
@@ -347,7 +345,7 @@ supportService:
 adminService:
   deploymentname: admin-service-deployment
   servicename: admin-service
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/admin-service:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:admin-service-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:admin-service-97788750fecb
   replicas: 1
   port: 8080
@@ -360,7 +358,7 @@ adminService:
 apiGateway:
   deploymentname: api-gateway-deployment
   servicename: api-gateway
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/api-gateway:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:api-gateway-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:api-gateway-97788750fecb
   replicas: 1
   port: 8080
@@ -373,7 +371,7 @@ apiGateway:
 frontend:
   deploymentname: frontend-deployment
   servicename: frontend
-  image: us-central1-docker.pkg.dev/project-522024ff-8338-453d-a3d/banking-platform/frontend:7ebfb5a
+  image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:frontend-6febcc33e118
   #image: 319602347522.dkr.ecr.eu-west-2.amazonaws.com/banking-platform:frontend-97788750fecb
   replicas: 1
   port: 8080

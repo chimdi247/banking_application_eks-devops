@@ -182,8 +182,8 @@ jobs:
           push: false
           load: true
           tags: |
-            ${{ env.IMAGE_PREFIX }}:${{ matrix.service }}-${{ steps.vars.outputs.sha }}
-            ${{ env.IMAGE_PREFIX }}:${{ matrix.service }}-latest
+            ${{ env.AR_PREFIX }}/${{ matrix.service }}:${{ steps.vars.outputs.sha }}
+            ${{ env.AR_PREFIX }}/${{ matrix.service }}:latest
           cache-from: type=gha,scope=${{ matrix.service }}
           cache-to: type=gha,scope=${{ matrix.service }},mode=max
 

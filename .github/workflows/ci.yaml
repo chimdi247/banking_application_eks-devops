@@ -27,28 +27,28 @@
 name: CI (AWS / ECR)
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch: {} # manual "Run workflow" — build+push all images on demand
+#  push:
+#    branches: [main]
     # A change to shared code OR the helm chart rebuilds everything — intentional,
     # keeps the pipeline a single, predictable thing.
-    paths:
-      - "services/**"
-      - "frontend/**"
-      - "pkg/**"
-      - "proto/**"
-      - "build/**"
-      - "deploy/helm/**"
-      - ".github/workflows/ci.yaml"
-  pull_request:
-    paths:
-      - "services/**"
-      - "frontend/**"
-      - "pkg/**"
-      - "proto/**"
-      - "build/**"
-      - "deploy/helm/**"
-      - ".github/workflows/ci.yaml"
-  workflow_dispatch: {} # manual "Run workflow" — build+push all images on demand
+#    paths:
+#      - "services/**"
+#      - "pkg/**"
+#      - "proto/**"
+#      - "build/**"
+#      - "deploy/helm/**"
+#      - ".github/workflows/ci.yaml"
+#  pull_request:
+#    paths:
+#      - "services/**"
+#      - "frontend/**"
+#      - "pkg/**"
+#      - "proto/**"
+#      - "build/**"
+#      - "deploy/helm/**"
+#      - ".github/workflows/ci.yaml"
+
 
 concurrency:
   group: ci-${{ github.ref }}

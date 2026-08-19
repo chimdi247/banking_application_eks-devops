@@ -1,0 +1,60 @@
+# Velero server + node-agent (file-system backups via kopia). Uses Workload
+# Identity (no static GCP keys) and the GCS bucket + service account created
+# by terraform/velero. Optional add-on.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: velero
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: banking
+  source:
+    repoURL: https://vmware-tanzu.github.io/helm-charts
+    chart: velero
+    targetRevision: 12.1.0
+    helm:
+      values: |
+        initContainers:
+          - name: velero-plugin-for-gcp
+            image: velero/velero-plugin-for-gcp:v1.14.2
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - mountPath: /target
+                name: plugins
+        # Workload Identity — impersonate the GCP service account from
+        # terraform/velero; no static credentials.
+        credentials:
+          useSecret: false
+        serviceAccount:
+          server:
+            name: velero # MUST be "velero" to match the Workload Identity binding (velero:velero)
+            annotations:
+              iam.gke.io/gcp-service-account: banking-dev-velero@project-522024ff-8338-453d-a3d.iam.gserviceaccount.com
+        configuration:
+          backupStorageLocation:
+            - name: default
+              provider: gcp
+              bucket: banking-velero-backups-734665195338
+          volumeSnapshotLocation:
+            - name: default
+              provider: gcp
+              config:
+                project: project-522024ff-8338-453d-a3d
+                snapshotLocation: us-central1
+        snapshotsEnabled: true
+        deployNodeAgent: true # node-agent DaemonSet for file-system (kopia) backups
+        resources:
+          requests: { cpu: 50m, memory: 128Mi }
+          limits: { cpu: 500m, memory: 512Mi }
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: velero
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

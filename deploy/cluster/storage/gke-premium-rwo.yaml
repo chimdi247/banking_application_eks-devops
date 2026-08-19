@@ -1,0 +1,23 @@
+# GKE SSD Persistent Disk StorageClass as the cluster DEFAULT.
+#
+# Uses the GKE Compute Engine Persistent Disk CSI driver.
+# Applied early so PVCs can bind against this StorageClass.
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: premium-rwo
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+    argocd.argoproj.io/sync-wave: "-1"
+
+provisioner: pd.csi.storage.gke.io
+
+parameters:
+  type: pd-ssd
+
+reclaimPolicy: Delete
+
+volumeBindingMode: WaitForFirstConsumer
+
+allowVolumeExpansion: true

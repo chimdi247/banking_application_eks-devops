@@ -397,7 +397,7 @@ postgres:
 ingress:
   enabled: true
   className: traefik
-  host: wsedf.online
+  host: vhbj.site
   tls: true # cert-manager auto-issues banking-tls via ingress-shim
   tlsSecretName: banking-tls
   clusterIssuer: letsencrypt-prod

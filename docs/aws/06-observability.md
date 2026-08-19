@@ -243,7 +243,7 @@ metadata:
 spec:
   entryPoints: [web]
   routes:
-    - match: Host(`vijaygiduthuri.in`) && PathPrefix(`/grafana`)
+    - match: Host(`vhbj.site`) && PathPrefix(`/grafana`)
       kind: Rule
       priority: 100
       services:
@@ -258,7 +258,7 @@ metadata:
 spec:
   entryPoints: [web]
   routes:
-    - match: Host(`vijaygiduthuri.in`) && PathPrefix(`/prometheus`)
+    - match: Host(`vhbj.site`) && PathPrefix(`/prometheus`)
       kind: Rule
       priority: 100
       services:
@@ -273,7 +273,7 @@ metadata:
 spec:
   entryPoints: [web]
   routes:
-    - match: Host(`vijaygiduthuri.in`) && PathPrefix(`/alertmanager`)
+    - match: Host(`vhbj.site`) && PathPrefix(`/alertmanager`)
       kind: Rule
       priority: 100
       services:
@@ -304,9 +304,9 @@ since the SPA returns `200` for any path):
 | Alertmanager | `http://vijaygiduthuri.in/alertmanager` | none              |
 
 ```bash
-curl -s  http://vijaygiduthuri.in/prometheus/-/healthy       # Prometheus Server is Healthy.
-curl -s  http://vijaygiduthuri.in/alertmanager/-/healthy     # OK
-curl -s  http://vijaygiduthuri.in/grafana/api/health         # {"database":"ok", ...}  (JSON, not HTML)
+curl -s  http://vhbj.site/prometheus/-/healthy       # Prometheus Server is Healthy.
+curl -s  http://vhbj.site/alertmanager/-/healthy     # OK
+curl -s  http://vhbj.site/grafana/api/health         # {"database":"ok", ...}  (JSON, not HTML)
 ```
 
 > ⚠️ **The scheme in the values file must match how you browse.** Grafana embeds
@@ -321,14 +321,14 @@ curl -s  http://vijaygiduthuri.in/grafana/api/health         # {"database":"ok",
 > ```yaml
 > prometheus:
 >   prometheusSpec:
->     externalUrl: http://vijaygiduthuri.in/prometheus   # http for Phase 6; Phase 7 flips to https
+>     externalUrl: http://vhbj.site/prometheus   # http for Phase 6; Phase 7 flips to https
 > alertmanager:
 >   alertmanagerSpec:
->     externalUrl: http://vijaygiduthuri.in/alertmanager
+>     externalUrl: http://vhbj.site/alertmanager
 > grafana:
 >   grafana.ini:
 >     server:
->       root_url: http://vijaygiduthuri.in/grafana
+>       root_url: http://vhbj.site/grafana
 >       serve_from_sub_path: true
 > ```
 > This file **is** managed by Argo CD, so after editing it just `git push` and Argo
